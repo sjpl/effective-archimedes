@@ -14,6 +14,8 @@ app.set('views', __dirname + '/views');
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
+//var add = require('./routes/addEvent');
+
 var fs = require('fs');
 var dataVar;
 fs.readFile('public/data/data.json', 'utf8', function (err, data) {
@@ -41,13 +43,36 @@ app.get('/profilepage-notification', function (request, response) {
 app.get('/filterpage', function (request, response) {
     response.render('filterpage', dataVar);});
 app.get('/addeventpage', function (request, response) {
-    response.render('addeventpage', dataVar);});
+    response.render('addeventpage', dataVar);
+});
 app.get('/eventpage', function (request, response) {
     response.render('eventpage', dataVar);});
 app.get('/aboutpage', function (request, response) {
     response.render('aboutpage', dataVar);});
 app.get('/discusspage', function (request, response) {
     response.render('discusspage', dataVar);});
+
+app.get('/addEvent', function(request, response) {
+    	// Your code goes here
+  console.log("yay, addEvent just ran!");
+//    console.log(request.query.date);
+//    console.log(request.query.time);
+    
+    var newEvent = 
+        {
+            eventname: request.query.eventname,
+            time: request.query.time,
+            date: request.query.date,
+            location: request.query.location,
+            about: request.query.about,
+            img: "http://lorempixel.com/400/400/abstract",
+            categories: "Other"
+        };
+    console.log(newEvent);
+    
+    dataVar.events.push(newEvent);
+//    console.log(window.location.href);
+});
 
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
