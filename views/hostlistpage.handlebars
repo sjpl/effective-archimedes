@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Loading head information & navbar-->
+<script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+<script>
+    $(function () {
+        $("#navbar").load("templates/navbar.handlebars")
+    });
+</script>
+<div id="navbar"></div>
+
+<!--Main body of page-->
+<body>
+    <div class="flexbox flex-tabs">
+            <a href="/eventlistpage/all">
+                <div>Events</div>
+            </a>
+            <a href="/hostlistpage">
+                <div class="active">Hosts</div>
+            </a>
+        </div>
+    <div class="g-grid">
+        <section class="1-pad-bot-5 1-sm-pad-bot-3">
+            <div class="js-popular-events">
+                <div class="js-events-list">
+                    {{#each hosts}}
+                        <div class="g-cell g-cell--has-overflow g-cell-1-1 g-cell-md-1-2-g-cell-lg-1-3 1-pad-vert-3" role="row">
+                          <div class="well well-sm" style="margin-bottom:0px;" role="gridcell">
+                              <div class="poster-card__header" >
+                                  <table>
+                                    <tr>
+                                        <style type="text/css">
+                                            td
+                                            {
+                                                padding:0 10px 0 10px;
+                                            }
+                                        </style>
+                                        <td>
+                                            <img class="img-responsive" style="height:150px;width:150px" src="{{img}}" alt="">
+                                        </td>
+                                        <td>
+                                            <a href="/hostpage/{{hostname}}" >
+                                            {{hostname}} 
+                                            </a>
+                                        </td>
+                                    </tr>
+                                  </table>              
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+             </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

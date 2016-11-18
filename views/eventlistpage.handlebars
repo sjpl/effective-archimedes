@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Effective-Eureka</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <!--    <link href="css/spacelab.css" rel="stylesheet">-->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- These lines are needed for Javascript and also enables Heroku to publish our app -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/js/handlebars-v4.0.5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script language="JavaScript" type="text/javascript">
+        function login(showhide) {
+            if (showhide == "show") {
+                document.getElementById('popupbox').style.visibility = "visible";
+            } else if (showhide == "hide") {
+                document.getElementById('popupbox').style.visibility = "hidden";
+            }
+        }
+    </script>
+    
+</head>
+<header>
+    <div class="custom-container">
+        <div class="navigationbar-flex navbar-default">
+            <div class="flexleft">
+                <a class="navigationbar-item" href="/landingpage">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </a>
+            </div>
+            <form class="search-form flexleft">
+                <input type="text" class="search-box" placeholder="Search">
+            </form>
+            <div class="flexright">
+                <a class="navigationbar-item" href="/eventlistpage">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </a>
+                <a class="navigationbar-item" href="/addeventpage">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+                <a class="navigationbar-item" href="/profilepage">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--Main body of page-->
+
+<body>
+    <div class="flexbox flex-tabs">
+        <a href="/eventlistpage/all">
+            <div class="active">Events</div>
+        </a>
+        <a href="/hostlistpage">
+            <div>Hosts</div>
+        </a>
+    </div>
+    <div class="g-grid">
+        <section class="1-pad-bot-5 1-sm-pad-bot-3">
+            <div class="js-popular-events">
+                <div class="js-events-list">
+                    {{#each events}}
+                    <div class="g-cell g-cell--has-overflow g-cell-1-1 g-cell-md-1-2-g-cell-lg-1-3 1-pad-vert-3" role="row">
+                        <div class="well well-sm" style="margin-bottom:0px;" role="gridcell">
+                            <div style="display: inline-block;vertical-align:middle;">
+                                <img style="height:80px;width:80px;display:table-cell; vertical-align:text-top;" src="{{img}}" alt="">
+                            </div>
+                            <div style="display: inline-block;vertical-align:middle;">
+                                <a href="/eventpage/{{eventname}}">
+                                    <p></p>
+                                    <div>{{eventname}}</div>
+                                    <div>{{date}}</div>
+                                    <div>{{location}}</div>
+                                </a>
+                                <p style="display: inline-block">Category:</p>
+                                <a class="event-category" style="display: inline-block" href="">{{categories}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
